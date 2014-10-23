@@ -68,7 +68,7 @@ for(j in 1:n.runs){
 		fecundity<-F0*exp(F1*sum(N[,t]))*exp(F2*sum(N[,t])^2)
 		fecundities[]<-fecundity
 		fecund.mat=fecundities/2
-		M[1:2,fecund.inds]<-fecund.mat
+		M[1:2,fecund.inds]<-fecund.mat*age.survivals[fecund.inds] #Taal Changed this Oct 22nd
 		N[,t+1]=M %*% N[,t]
 		N[N<0]=0
 		lambdas[t,j]<-Re(eigen(M)$values[1])
